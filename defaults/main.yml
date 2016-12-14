@@ -1,0 +1,5 @@
+---
+# defaults file for secure-ssh
+ssh_service: ssh
+# TODO: check other OSes and provide overrides, where needed
+ssh_config: "/etc/ssh/sshd_config"

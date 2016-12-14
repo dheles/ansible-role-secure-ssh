@@ -1,0 +1,4 @@
+---
+# handlers file for secure-ssh
+- name: restart ssh
+  service: name={{ ssh_service }} state=restarted

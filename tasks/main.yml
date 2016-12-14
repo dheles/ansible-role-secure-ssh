@@ -1,0 +1,22 @@
+---
+# tasks file for secure-ssh
+
+- name: include os-specific variables
+  include_vars: "{{ ansible_os_family }}.yml"
+
+# TODO: parameterize to provide options
+# TODO: consider using a template instead
+- name: update SSH configuration
+  lineinfile:
+    dest: "{{ ssh_config }}"
+    regexp: "{{ item.regexp }}"
+    line:   "{{ item.line }}"
+    state: present
+  with_items:
+    - regexp: "^PasswordAuthentication"
+      line:   "PasswordAuthentication no"
+    - regexp: "^PermitRootLogin"
+      line:   "PermitRootLogin no"
+    - regexp: "^Port"
+      line:   "Port {{ ssh_port }}"
+  notify: restart ssh
