@@ -1,0 +1,3 @@
+---
+  # vars for Debian-family OSes
+  ssh_service: ssh
