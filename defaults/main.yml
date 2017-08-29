@@ -1,5 +1,14 @@
 ---
 # defaults file for secure-ssh
-ssh_service: ssh
+ssh_service:                  ssh
 # TODO: check other OSes and provide overrides, where needed
-ssh_config: "/etc/ssh/sshd_config"
+ssh_config:                   "/etc/ssh/sshd_config"
+ssh_port:                     "{{ ssh_default_port }}"
+ssh_permit_root_login:        false
+ssh_password_authentication:  true
+login_user:                   "deploy"
+# ssh_per_user_configs:
+#   - user: "{{ login_user }}"
+#     lines:
+#       - "PasswordAuthentication no"
+#       - "PermitTTY yes"

@@ -1,0 +1,9 @@
+{% if ssh_port != ssh_default_port %}
+Port {{ ssh_port }}
+{% endif %}
+{% if not ssh_permit_root_login %}
+PermitRootLogin no
+{% endif %}
+{% if not ssh_password_authentication %}
+PasswordAuthentication no
+{% endif %}
