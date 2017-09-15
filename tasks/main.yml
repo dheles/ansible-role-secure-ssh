@@ -10,13 +10,10 @@
   lineinfile:
     dest: "{{ ssh_config }}"
     regexp: "{{ item.regexp }}"
-    line:   "{{ item.line }}"
+    line:   "{{ item.setting }}"
     state: present
-  with_items:
-    # - regexp: "^PasswordAuthentication"
-    #   line:   "PasswordAuthentication no"
-    - regexp: "^PermitRootLogin"
-      line:   "PermitRootLogin no"
-    - regexp: "^Port"
-      line:   "Port {{ ssh_port }}"
+    backrefs: "{{ item.backrefs | default(false) }}"
+    backup: true
+    validate: "{{ ssh_service }} -t -f %s"
+  with_items: '{{ ssh_settings }}'
   notify: restart ssh
